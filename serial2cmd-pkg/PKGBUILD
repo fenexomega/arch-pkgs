@@ -1,0 +1,44 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# See http://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines
+# for more information on packaging from GIT sources.
+
+# Maintainer: Your Name <youremail@domain.com>
+pkgname=serial2cmd-git
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="A program to read input from serial and call shell commands"
+arch=('any')
+url="http://github.com/fenexomega/serial2cmd"
+license=('GPL3')
+depends=('python-pyqt5' 'python-pyserial')
+makedepends=('git')
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+source=('git+https://github.com/fenexomega/Serial2Cmd.git')
+noextract=()
+md5sums=('SKIP') #generate with 'makepkg -g'
+
+
+build() {
+
+  #
+  # BUILD HERE
+  #
+  cd $srcdir/Serial2Cmd
+  python setup.py bdist
+}
+
+package() {
+  cd $srcdir/Serial2Cmd
+  python setup.py install --root "$pkgdir"  
+}
+
+# vim:set ts=2 sw=2 et:
